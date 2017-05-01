@@ -15,9 +15,11 @@ logging.basicConfig(format="%(asctime),%(levelname)s,%(message)")
 logger = logging.getLogger(__file__)
 
 """
-
+This individual script can be used to dump different table jsons from the 
+dbdump.json generated in the Xenmobile suppoer bundle. 
 """
 
+#TODO : Logging configuration is a mess at the moment we need to work this one out 
 
 OUTDIR_DEFAULT = "dbdump_out"
 
