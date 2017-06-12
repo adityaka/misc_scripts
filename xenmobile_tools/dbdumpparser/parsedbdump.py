@@ -38,6 +38,9 @@ def getDbDumpIterator(dbDumpContent):
 
     beginIndex=0
     endIndex = -1
+    # match the regex \}\{ since the file format doesn't terminate the json records. 
+    # each record is a table from the XM DB and we can dump it to different files
+    # following will act as a generator which can be stepped once. 
     matchContent = None
     for match in matches:
         endIndex = match.span()[0]+1
@@ -59,11 +62,12 @@ def main():
     inputFile = None
     outDir = None
 
+    #don't really see a problem reported in Issue-1 with argument parsing. 
     if hasattr(arguments,"jsonFile") is  False:
         logger.critical("cannot proceed without the json file")
         parser.print_help()
         raise
-
+    
     if hasattr(arguments,"outDir") is  False:
         logger.warning("proceed without the out dir argument assuming output directory as current directory")
         outParent  = os.path.dirname(os.path.realpath(arguments.jsonFile))
