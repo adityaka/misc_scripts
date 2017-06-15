@@ -2,9 +2,7 @@
 This script module parses the ill-formed DbDump.json for xenmobile and splits the data into various tables 
 it's easier to query and probably later we can use it in a UI as a tool 
 """
-
 from __future__ import print_function,division,unicode_literals
-
 import json
 import os
 import re
@@ -18,14 +16,11 @@ logger = logging.getLogger(__file__)
 This individual script can be used to dump different table jsons from the 
 dbdump.json generated in the Xenmobile suppoer bundle. 
 """
-
 #TODO : Logging configuration is a mess at the moment we need to work this one out 
-
 OUTDIR_DEFAULT = "dbdump_out"
 
 def getDbDumpIterator(dbDumpContent):
     """
-    
     :param dbDumpContent: the json content from the DbDump.json file  
     :return: generator on the match objects to save some CPU on the loop
     """
@@ -35,7 +30,6 @@ def getDbDumpIterator(dbDumpContent):
         raise
 
     matches =  re.finditer("\}\{",dbDumpContent)
-
     beginIndex=0
     endIndex = -1
     # match the regex \}\{ since the file format doesn't terminate the json records. 
@@ -94,9 +88,6 @@ def main():
         print("Done processing Table {0}".format(outFileName))
 
     logger.info("Done!!!")
-
-
-
 
 if __name__ == "__main__":
     main()
