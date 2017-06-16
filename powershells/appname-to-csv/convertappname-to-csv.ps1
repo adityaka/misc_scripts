@@ -23,14 +23,28 @@ foreach ($File in $AllFiles){
 
     foreach($ExeName in $ExeNames)
     {
-        if ($ExeName -match "\.exe")
-        {  
+        if ($ExeName -match "\.exe"){  
             $Executable = ($ExeName -split "=")[1]
             Add-Member -Name "Executable" -Value $Executable -InputObject $Record -MemberType NoteProperty
         }elseif ($ExeName -match "\.msi")
         {
             $MsiName = ($ExeName -split "=")[1]
             Add-Member -Name "Msi" -Value $MsiName -InputObject $Record -MemberType NoteProperty 
+            $ExOptions = Get-Content $File | Select-String -Pattern "exoptions" 
+            #Assuming multiple Exoptions but only one with MSI will have the value 
+            if ($ExOptions -is [Array]){
+                foreach($Exoption in $Exoptions){
+                    $ExoptionElements= $ExOption -split "=" 
+                    if($ExoptionElements.Length -gt 1){
+                        Add-Member -InputObject $Record -MemberType NoteProperty -Name "Exoptions" -Value $ExoptionElements[1]
+                    }
+                }
+            }else {
+                $ExoptionElements= $ExOption -split "=" 
+                if($ExoptionElements.Length -gt 1){
+                    Add-Member -InputObject $Record -MemberType NoteProperty -Name "Exoptions" -Value $ExoptionElements[1]
+                }
+            }
         }
     }
     
