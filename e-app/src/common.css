@@ -1,0 +1,17 @@
+h1{
+    color:teal;
+    font-weight: bolder;
+    text-decoration-style: wavy;
+}
+
+label#lblCount{
+    font-size: 44px;
+    font-weight: bolder;
+    color:red;
+
+}
+
+div#mainContainer{
+    alignment: center;
+    vertical-align: center;
+}

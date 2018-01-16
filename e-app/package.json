@@ -1,0 +1,15 @@
+{
+  "name": "e-app",
+  "version": "1.0.0",
+  "description": "Sample electron learning app starts with hello world app and then evolved into somethin unthinkable",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "./node_modules/.bin/electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^1.7.10"
+  }
+}
