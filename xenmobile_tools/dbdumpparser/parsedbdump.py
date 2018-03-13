@@ -1,6 +1,6 @@
 """
-This script module parses the ill-formed DbDump.json for xenmobile and splits the data into various tables 
-it's easier to query and probably later we can use it in a UI as a tool 
+This script module parses the ill-formed DbDump.json for xenmobile and splits the data into various tables
+it's easier to query and probably later we can use it in a UI as a tool
 """
 from __future__ import print_function,division,unicode_literals
 import json
@@ -13,15 +13,15 @@ logging.basicConfig(format="%(asctime),%(levelname)s,%(message)")
 logger = logging.getLogger(__file__)
 
 """
-This individual script can be used to dump different table jsons from the 
-dbdump.json generated in the Xenmobile suppoer bundle. 
+This individual script can be used to dump different table jsons from the
+dbdump.json generated in the Xenmobile suppoer bundle.
 """
-#TODO : Logging configuration is a mess at the moment we need to work this one out 
+#TODO : Logging configuration is a mess at the moment we need to work this one out
 OUTDIR_DEFAULT = "dbdump_out"
 
 def getDbDumpIterator(dbDumpContent):
     """
-    :param dbDumpContent: the json content from the DbDump.json file  
+    :param dbDumpContent: the json content from the DbDump.json file
     :return: generator on the match objects to save some CPU on the loop
     """
     #in python 2 bytes and str are the same type
@@ -32,9 +32,9 @@ def getDbDumpIterator(dbDumpContent):
     matches =  re.finditer("\}\{",dbDumpContent)
     beginIndex=0
     endIndex = -1
-    # match the regex \}\{ since the file format doesn't terminate the json records. 
+    # match the regex \}\{ since the file format doesn't terminate the json records.
     # each record is a table from the XM DB and we can dump it to different files
-    # following will act as a generator which can be stepped once. 
+    # following will act as a generator which can be stepped once.
     matchContent = None
     for match in matches:
         endIndex = match.span()[0]+1
@@ -45,23 +45,27 @@ def getDbDumpIterator(dbDumpContent):
 
 def main():
     """
-    This the main shell and the file writer 
-    :return: None  
+    This the main shell and the file writer
+    :return: None
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i","--json-file",dest="jsonFile",help="path to DbDump.json file from the xenmobile file bundle")
-    parser.add_argument("-o","--outdir",dest="outDir",help="output directory for the json files")
+    parser.add_argument("-i","--json-file",
+                        dest="jsonFile",
+                        help="path to DbDump.json file from the xenmobile file bundle")
+    parser.add_argument("-o","--outdir",
+                        dest="outDir",
+                        help="output directory for the json files")
 
     arguments = parser.parse_args()
     inputFile = None
     outDir = None
 
-    #don't really see a problem reported in Issue-1 with argument parsing. 
+    #don't really see a problem reported in Issue-1 with argument parsing.
     if hasattr(arguments,"jsonFile") is  False:
         logger.critical("cannot proceed without the json file")
         parser.print_help()
         raise
-    
+
     if hasattr(arguments,"outDir") is  False:
         logger.warning("proceed without the out dir argument assuming output directory as current directory")
         outParent  = os.path.dirname(os.path.realpath(arguments.jsonFile))
