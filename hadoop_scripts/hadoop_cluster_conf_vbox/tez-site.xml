@@ -1,0 +1,8 @@
+<configuration>
+	<property>                                                                                             
+		<name>tez.lib.uris</name>                                                                      
+		<value>${fs.defaultFS}/apps/tez-0.9.1/*</value>                                                
+		<type>string</type>                                                                            
+	</property>                                                                                          
+</configuration>                                                                                         
+					                      
