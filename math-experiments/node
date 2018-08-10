@@ -1,0 +1,149 @@
+#include<iostream>
+#include<string>
+#include<cstdlib>
+#include<cstring> // for memset
+#include<vector>
+#include<stdexcept>
+
+using namespace std;
+
+template <class NodeDataType>
+class Node {
+
+	protected:
+	Node **m_links;
+	int m_number_of_links;
+	NodeDataType *m_data;
+
+	public:
+	Node(int number_of_links);
+	~Node();
+	void SetLink(Node<NodeDataType> *link, int index);
+	Node<NodeDataType>* GetLinkAt(int index);
+	NodeDataType* GetData(void);
+	void SetNodeData(NodeDataType*);
+
+};
+
+template <class NodeDataType>
+Node<NodeDataType>::Node(int number_of_links) {
+	if (m_links <= 0){
+		throw new invalid_argument("Number of links should be a positive integer");
+	}else{
+		this->m_links = new Node<NodeDataType>[number_of_links];
+		memset((void*)m_links, sizeof(Node) * number_of_links, NULL); // init the array of links with NULL instead of garbage	
+		this->m_number_of_links = number_of_links;
+	}
+}
+
+
+template <class NodeDataType>
+void Node<NodeDataType>::SetLink(Node<NodeDataType> *link, int index){
+	if (index >= this->m_number_of_nodes){
+		throw new out_of_range("index out of bounds can't set the link"); 
+	}
+
+	this->m_links[index] = link;
+	
+}
+
+template <class NodeDataType>
+Node<NodeDataType>* Node<NodeDataType>::GetLinkAt(int index){
+
+	if ( index > this->number_of_links){
+		throw new out_of_range("index out of range for number of links in node");
+	}
+	
+	if (m_links != NULL){
+		Node<NodeDataType> *links = *m_links;
+		return links[index];
+		
+	}else{
+		// Shouldn't reach here at all since constructor won't allow creation of node 
+		// without the links 
+		// TODO: review and remove this condition if needed
+		throw new runtime_error("Node not initialzed");
+	}	
+}
+
+
+template <class NodeDataType>
+NodeDataType* Node<NodeDataType>::GetData(void){
+	return m_data;
+}
+
+template <class NodeDataType>
+void Node<NodeDataType>::SetNodeData(NodeDataType *data){
+	this->m_data = data;
+}
+
+
+	
+
+template <class ListType>
+class LinkedList{
+
+private:
+	Node<ListType> *m_head_node;
+	int m_list_length;
+	
+public:
+
+	LinkedList();
+	void Add(ListType *data);
+	void Remove(ListType *data);
+	void RemoveAt(int index);
+	ListType* GetDataAt(int index);
+	int Length();
+	~LinkedList();
+}
+
+
+<template ListType>
+LinkedList<ListType>::ListType(){
+	this->m_list_length= -1;
+	this->m_head_node = NULL;
+}
+
+template <ListType>
+LinkedList<ListType> LinkedList::Add(ListType *data){
+	if (m_head_node == NULL){
+		this->m_head_node = new Node<ListType>(1);
+	}else{
+		//get last node 
+		Node<ListType> *last_node = m_head_node;
+		for(Node<NodeType> iter_node = this->m_head_node; iter_node != NULL; iter_node = iter_node->GetLink(0)){
+			last_node = iter_node;
+		}
+
+		Node<ListType> new_node = new Node<ListType>(1);
+		new_node->SetData(data);
+		new_node.SetLink(0,NULL);
+		// append node
+		last_node->SetLink(new_node,0);
+		this->m_list_length++;
+
+	}
+}
+
+
+void LinkedList::RemoveAt(int index){
+	
+}
+
+
+template <ListType>
+ListType* LinkedList::GetDataAt(int index){
+
+}
+
+int LinkedList::Length(){
+return m_list_length;
+}
+
+
+
+
+
+
+
