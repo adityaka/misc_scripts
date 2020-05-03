@@ -1,0 +1,31 @@
+
+
+    Summary
+    ADHD.pl for some reason is going to set the limit of 4GB for all virtual RPAs. The result returned by os_services.sh to ADHD.pl will always be "vGEN" for virtual RPA machines. This is the condition to lower the RPA log bundle size.
+    Editing the tweak t_IC_maxRPAsInfoSize and restarting the installation server may help in providing a temporary relief. Once RPA is rebooted the tweak will be reset.
+
+
+    observations from code
+
+    Installation Server 
+    Collection happens in CollectSystemInformationCommand  @ http://10.76.67.9:8080/source/xref/RP4VM_rel_5_2_2_0_0/src/management/com.kashya.recoverpoint.installation.server/src/main/java/com/kashya/installation/server/commands/global/CollectSystemInformationCommand.java
+    The Tweak IC_MAX_RPAS_INFO_SIZE_TWEAK is initialized as t_IC_MAX_RPA_INFO_SIZE_TWEAK @ http://10.76.67.9:8080/source/xref/RP=4VM_rel_5_2_2_0_0/src/management/com.kashya.recoverpoint.installation.server/src/main/java/com/kashya/installation/server/EnvironmentConstants.java#202
+    The tweak is referenced in: 
+    Review validateSizeLimit @ http://10.76.67.9:8080/source/s?refs=validateSizeLimit&project=RP4VM_rel_5_2_2_0_0
+    Review isEnoughSpaceInRP @ http://10.76.67.9:8080/source/s?refs=isEnoughFreeSpaceOnRPA&project=RP4VM_rel_5_2_2_0_0
+
+    ADHD.pl is setup to run every reboot 
+    Check rc.local @ http://10.76.67.9:8080/source/xref/RP4VM_rel_5_2_2_0_0/src/installation/distribution/rc.local#99 
+    ADHD.pl will use os_Services.sh @ http://10.76.67.9:8080/source/xref/RP4VM_rel_5_2_2_0_0/src/installation/distribution/os_services/os_services.sh?r=564d1a16#1002 
+    and will reduce the log file size tweak to 4 GB if the Generation returned is "vGEN" which stands for "virtual generation" set for RP4VMs always
+
+    check here http://10.76.67.9:8080/source/xref/RP4VM_rel_5_2_2_0_0/src/installation/distribution/os_services/os_services.sh?r=564d1a16#985 in os_services.sh
+    observations from logs 
+
+    logger:/sr/RP-28360/extracted.vrpadr01.KBox1.2020.04.09.18.07.36/files/home/kos/kbox/src/initialization/tweak_params$ grep "t_IC_" *
+    tweak.params.infra:t_IC_maxRPAsInfoSize = 4000 # MB - the maximum size allocted to RPAs info in the info collect result file
+
+
+
+
+
