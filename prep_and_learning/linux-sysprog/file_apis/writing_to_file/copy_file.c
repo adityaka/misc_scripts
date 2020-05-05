@@ -11,8 +11,8 @@
 #endif
 
 
-bool copy_file(char *src, char *dst) {
-    int s_fd=-1, d_fd=-1; 
+bool copy_file(char *src, char *dst, bool overwrite) {
+    int s_fd=-1, d_fd=-1;
     struct stat src_stat;
     struct stat dst_stat;
 
@@ -35,8 +35,12 @@ bool copy_file(char *src, char *dst) {
         errno = orig_error;
         return false;
     }
+
     if(stat(dst, &dst_stat)== 0) {
-        
+        DEBUGLOG("File exists and overwrite is %d " , (int)overwrite);
+        if(overwrite) {
+            
+        }
     }
 
     /*all stats are good*/
