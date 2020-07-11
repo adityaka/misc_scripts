@@ -1,9 +1,8 @@
 
-
 class ListNode(object):
-    def __init__(self):
-        self._links = [None, None]
-
+    def __init__(self, number_of_nodes=2):
+        self._links = [None for x in range(number_of_nodes)]
+        
     @property
     def next(self):
         return self._links[0]

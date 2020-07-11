@@ -1,0 +1,58 @@
+Example
+Provided: 
+          a*
+ /     /     \     \
+b     c*     d*     e
+|   / | \   /  \   / \
+f* g  h* i j*   k l  m 
+
+nodes with * match the filter:
+return: 
+
+   a
+ / | \
+f  c  d
+   |  |
+   h  j
+
+
+root:{a: { b:{f}, c:{g:None,f:None,d:{}}
+"""
+{a:{b:{f:None},c:{}..} , {a:{}}
+
+def get_filtered_tree(root : dict,filter, result : dict):
+    for key in root:
+        if key == filter:
+            result[key] = {}
+        for childKey in root[key]:
+            if root[key][childKey]:
+                if key in result:
+                    get_filtered_tree(root[key][childKey], filter, result[key])
+                else:
+                    get_filtered_tree(root[key][childKey], filter, result)
+
+"""            
+root {a:{b:{f:{}}...} 
+result{}
+
+iteration 1 
+result: {a:{}}
+iteration2 
+root : {b:{f}}
+result : {}
+iteration3:
+root : {f:{}}
+
+
+"""
+ 
+ 
+ """  
+    while root:
+        if does_match(filter, root.keys()[0]):
+            result[root.keys()[0]] = {}
+        for key, val in root[a]:
+            get_filtered_tree(root[key], filter, result)
+ """
+ 
+            

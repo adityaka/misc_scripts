@@ -3,7 +3,7 @@ from linkedlist.listinterface import List
 
 class SingleList(List):
     def __init__(self):
-        super().__init__()
+        super(List,self).__init__()
 
     def __len__(self):
         return self._len
