@@ -1,16 +1,12 @@
 #include "SimpleApp.hh"
 
 class ParentClass {
-    public:
-    ParentClass() {
-
-    }
-
+    public:g++
     void publicMethod();
     virtual void publicVirtualMethod();
 
-    protected:
-    virtual void protectedVirtualMethod();
+    /* protected:
+    virtual void protectedVirtualMethod(); */
 
     int protectedInt = 10;
 
@@ -19,15 +15,13 @@ class ParentClass {
 };
 
 class ChildClass : public ParentClass {
-    public:
-    ChildClass() {
-
-    }
-
-    public:
-    void publicMethod();
-    protected:
-    virtual void protectedVirtualMethod();
     
+    public:
+    virtual void publicMethod();
+    virtual void pubicVirtualMethod();
+    
+   /*  protected:
+    virtual void protectedVirtualMethod();
+    */ 
 
 };

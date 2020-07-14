@@ -11,18 +11,14 @@ class App {
     App(int argc, char **argv){
         this->argc = argc;
         this->argv = argv;
-   
     }
 
     virtual int operator ()(int argc, char **argv) {
-
         defineAppArgs();
         if (!parseCommandLineArgs()) {
             return EINVAL;
         }
-
         main();
-
     }
 
     protected:
@@ -33,7 +29,6 @@ class App {
                 
             }
         } 
-
         return true;
     }
 
@@ -52,7 +47,6 @@ class App {
     char **argv;
     char *appname;
     bool appParserDefined = false;
-
 };
 
 #endif
