@@ -1,4 +1,4 @@
-#include "SimpleApp.hh"
+#include <SimpleApp.hh>
 
 class ParentClass {
     public:g++
