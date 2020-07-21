@@ -6,8 +6,8 @@
 #include<ctime>
 #include<chrono>
 
-#ifndef BASIC_CPP_CONSTREF_EXPERIMENT
-#define BASIC_CPP_CONSTREF_EXPERIMENT
+#ifndef PREP_AND_LEARN_UTILS_LOGGER
+#define PREP_AND_LEARN_UTILS_LOGGER
 namespace basic_cpp {
     namespace constrefs {
         enum class LogLevel {
@@ -39,13 +39,13 @@ namespace basic_cpp {
                 return timestr;
             }
 
-            static const Logger* getLogger(
+            static const Logger& getLogger(
                 const std::string loggerName, 
                 LogLevel level=LogLevel::INFO) {
                 if (Logger::loggers.find(loggerName) == Logger::loggers.end() ) {
                     Logger::loggers[loggerName] =  new Logger(loggerName, level);
                 }
-                return loggers[loggerName];
+                return *(loggers[loggerName]);
             }
 
             void log(std::string msg, LogLevel level) const {
@@ -78,6 +78,9 @@ namespace basic_cpp {
                 log(msg, LogLevel::TRACE);
             }
 
+            ~Logger() {
+                this->info("Logger " + this->name + " Destroyed");
+            }
             private:
             static std::map<std::string, Logger*> loggers;
             
