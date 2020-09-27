@@ -1,5 +1,5 @@
 #include <List.hh>
-#include "ListNode.hh"
+#include <ListNode.hh>
 
 #ifndef PREP_AND_LEARN_LISTS_SINGLELIST_H
 #define PREP_AND_LEARN_LISTS_SINGLELIST_H
@@ -42,7 +42,7 @@ class SingleList : public List<T> {
         if(isEmpty()) {
             listHead = node;
             listTail = listHead;
-            listHead->setnext(nullptr);
+            listHead->setNext(nullptr);
         } else if (index == listLen) {
             listTail->setNext(node);
             listTail = node;
@@ -132,7 +132,7 @@ class SingleList : public List<T> {
     }
 
     virtual List<T>* reverse() {
-
+        return nullptr;
     }
 
     virtual ~SingleList() {

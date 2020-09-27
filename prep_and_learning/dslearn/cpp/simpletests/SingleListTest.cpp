@@ -17,7 +17,7 @@ int main() {
     s.insert(3,2);
     s.insert(68, s.len());
 
-    s.remove(0)
+    s.remove(0);
     
     for(int i = 0; i < s.len(); i++){
         std::cout << s.get(i) << " ";

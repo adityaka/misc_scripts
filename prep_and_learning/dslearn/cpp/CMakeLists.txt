@@ -1,7 +1,7 @@
 project(learn_and_prep)
 cmake_minimum_required(VERSION 3.15)
 set (CMAKE_CXX_STANDARD 11)
-
+find_package(Threads)
 
 # Add More include paths here this won't impact system control
 set(INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/include 
@@ -24,6 +24,9 @@ set(RULESPOLY_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/basic_cpp/rulespolymorph.cpp)
 add_executable(rulespolymorph ${RULESPOLY_SOURCES})
 set(TEMPLATE_INHERITANCE_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/basic_cpp/template_inheritance.cpp)
 add_executable(template_inheritance ${TEMPLATE_INHERITANCE_SOURCES})
+set(SYSLOGTEST_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/basic_cpp/syslogtest.cpp)
+add_executable(syslogtest ${SYSLOGTEST_SOURCES})
+target_link_libraries(syslogtest Threads::Threads)
 
 
 #simple tests - for datastructures 
