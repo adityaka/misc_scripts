@@ -1,0 +1,52 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""'
+" My vimrc 
+" Author : Aditya N Kapur
+" Date   : 25/10/2020
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""'
+
+" Simple mappings to true and false
+let s:true = 1
+let s:false = 0
+
+
+" This is the pace to add more shortcuts
+function! SetupMyShortcuts()
+	map <C-TAB> gt
+	map <C-S-TAB> gT
+endfunction
+
+" ------------ Library functions ------------------
+
+function! CommandExists (command)
+	return executable(command)
+endfunction
+
+function! GitAvailable()
+	return CommandExists("git")
+endfunction
+
+function! VundleExists()
+	if len(finddir("Vundle", $HOME . ".vim/Vundle")) > 0
+		return s:true
+	endif
+	return s:false
+endfunction
+" ------------------------------------------------
+
+"Vundle Setup
+function! SetupVundleIfNotExist()
+
+endfunction
+
+"Entry point
+function! Main()
+	set nocompatible
+	filetype on
+	set omnifunc
+	colorscheme murphy
+	call SetupMyShortcuts()
+endfunction
+
+"Raise the curtain
+call Main()
+
