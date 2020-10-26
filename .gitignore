@@ -12,4 +12,8 @@ target/
 build/
 testfile
 __pycache__
+node_modules/
+*.o
+*.lib
+*.so
 
