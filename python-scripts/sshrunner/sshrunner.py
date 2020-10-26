@@ -57,7 +57,7 @@ class Environment(object):
     @staticmethod
     def get_db(env_file="env.yml"):
         environments = {
-            "production": "nandi.prod.qubole.net",
+            "production": "somename.net",
             "staging": ""
         }
         return environments
@@ -75,7 +75,7 @@ class App(object):
     def run_shell_script_on_host(script_path, *args):
         pass
 
-    def
+
 
     @staticmethod
     def main():
