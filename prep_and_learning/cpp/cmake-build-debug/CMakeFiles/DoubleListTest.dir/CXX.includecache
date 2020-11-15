@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/List.hh
+
+../include/Node.hh
+exception
+-
+
+../lists/DoubleList.hh
+List.hh
+-
+ListNode.hh
+-
+
+../lists/ListNode.hh
+Node.hh
+-
+
+/home/addy/src/misc_scripts/prep_and_learning/cpp/simpletests/DoubleListTest.cpp
+DoubleList.hh
+-
+iostream
+-
+

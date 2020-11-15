@@ -19,6 +19,7 @@ node_modules/
 gradlew
 gradle*
 build
+cmake_build_debug/
 
 # Chef
 .chef/*.pem

@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Logger.hh
+iostream
+-
+string
+-
+map
+-
+sstream
+-
+exception
+-
+ctime
+-
+chrono
+-
+
+/home/addy/src/misc_scripts/prep_and_learning/cpp/basic_cpp/logger.cpp
+iostream
+-
+string
+-
+map
+-
+Logger.hh
+-
+

@@ -1,0 +1,10 @@
+2020.07.06 16:46:53 INFO  started: Metals version 0.9.1 in workspace '/home/kapura1/src/misc_scripts/prep_and_learning/dslearn/cpp'
+2020.07.06 16:47:09 INFO  time: initialize in 15s
+2020.07.06 16:47:17 WARN  no build tool detected in workspace '/home/kapura1/src/misc_scripts/prep_and_learning/dslearn/cpp'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Jul 06, 2020 5:41:48 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+Jul 06, 2020 5:41:57 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+Jul 06, 2020 9:00:05 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+2020.07.08 10:26:22 INFO  shutting down Metals

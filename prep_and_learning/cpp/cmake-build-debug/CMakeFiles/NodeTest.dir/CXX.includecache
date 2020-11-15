@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Node.hh
+exception
+-
+
+/home/addy/src/misc_scripts/prep_and_learning/cpp/simpletests/NodeTest.cpp
+Node.hh
+-
+
