@@ -1,4 +1,4 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""'
 " My vimrc 
 " Author : Aditya N Kapur
 " Date   : 25/10/2020
@@ -7,7 +7,7 @@
 " Simple mappings to true and false
 let s:true = 1
 let s:false = 0
-
+let s:VUNDLE_REPO = "https://github.com/VundleVim/Vundle.vim"
 
 " This is the pace to add more shortcuts
 function! SetupMyShortcuts()
@@ -32,10 +32,38 @@ function! VundleExists()
 	return s:false
 endfunction
 " ------------------------------------------------
+"Setup for NVim
+function VimSetup()
+	l:vimpath = finddir(".vim", "$HOME")
+	if len(vimpath) > 0
+		message "creating vim dir $HOME/.vim"
+		mkdir("$HOME/.vim")
+		if has("nvim")
+			let l:nvimpath = finddir("nvim", "$XDG_CONFIG_HOME")
+			if len(l:nvimpath) == 0
+				call system("ln -s $HOME/.vim $XDGHOME/nvim")
+				call system("ln -s $HOME/.vimrc $HOME/init.vim")
+			else
+				echo "Can't setup files for nvim since directory exists already"
+			endif
+		endif
+	endif
+endfunction
 
 "Vundle Setup
 function! SetupVundleIfNotExist()
+	if !VundleExists()
+		message "Setting up Vundle"
+		if GitAvailable()
+			VimSetup()
+			call system("git clone " . s:VUNDLE_REPO . " ~/.vim/bundle/Vundle.vim")
+		endif
+	endif
+endfunction
 
+"Create Vundle Config with default plugins
+function CreateVundleConfig()
+	let l:config_path = "$HOME/.vim/vundleconfig.vim"
 endfunction
 
 "Entry point
@@ -45,6 +73,8 @@ function! Main()
 	set omnifunc
 	colorscheme murphy
 	call SetupMyShortcuts()
+	call VimSetup()
+	call SetupVundleIfNotExist()
 endfunction
 
 "Raise the curtain
