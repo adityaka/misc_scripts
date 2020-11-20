@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/stringops.dir/basic_cpp/stringops.cpp.o  -o stringops 

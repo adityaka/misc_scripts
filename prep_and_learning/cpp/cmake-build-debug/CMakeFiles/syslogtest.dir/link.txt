@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/syslogtest.dir/basic_cpp/syslogtest.cpp.o  -o syslogtest  -lpthread 

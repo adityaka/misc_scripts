@@ -27,7 +27,8 @@ add_executable(template_inheritance ${TEMPLATE_INHERITANCE_SOURCES})
 set(SYSLOGTEST_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/basic_cpp/syslogtest.cpp)
 add_executable(syslogtest ${SYSLOGTEST_SOURCES})
 target_link_libraries(syslogtest Threads::Threads)
-
+set(VECTOR_OPS_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/basic_cpp/vector_ops.cpp)
+add_executable(vector_ops ${VECTOR_OPS_SOURCES})
 
 #simple tests - for datastructures 
 set(NODETEST_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/simpletests/NodeTest.cpp)

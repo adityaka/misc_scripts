@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/rulespolymorph.dir/basic_cpp/rulespolymorph.cpp.o  -o rulespolymorph 

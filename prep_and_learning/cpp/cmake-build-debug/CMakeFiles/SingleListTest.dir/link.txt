@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/SingleListTest.dir/simpletests/SingleListTest.cpp.o  -o SingleListTest 

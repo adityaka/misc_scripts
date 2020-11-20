@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/ListNodeTest.dir/simpletests/ListNodeTest.cpp.o  -o ListNodeTest 
