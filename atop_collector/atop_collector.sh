@@ -53,4 +53,7 @@ function main {
         check_and_rotate_logs
 }
 
-main "$@"
+
+while [ true ]; do
+        main "$@"
+done
