@@ -6,7 +6,6 @@ ATOP_SAMPLE_INTERVAL_SECONDS=5
 ATOP_SAMPLE_COUNT=720
 ATOP_LOG_RETENTION_COUNT=24
 
-
 function log_message {
         echo "$(date +%Y/%m/%dT%H:%M:%S) | $@" | tee -a ${LOGFILE_NAME}
 }
@@ -26,7 +25,6 @@ function check_root {
                         return 0
         fi
 }
-
 
 function start_logging {
         FILENAME=${LOGGING_DIRECTORY}/"atop_"$(date +%Y%m%dT%H%M%S)".log"
