@@ -6,8 +6,17 @@ ATOP_SAMPLE_INTERVAL_SECONDS=5
 ATOP_SAMPLE_COUNT=720
 ATOP_LOG_RETENTION_COUNT=24
 
+
 function log_message {
         echo "$(date +%Y/%m/%dT%H:%M:%S) | $@" | tee -a ${LOGFILE_NAME}
+}
+
+function handle_exit {
+        log_message "Got interuppted with signal number $1"
+        # pkill -P $$ && log_message "Successfully killed all children" || log_message "couldn't kill all children"
+        kill -TERM $(jobs -p)
+        echo $$
+        exit $?
 }
 
 function check_root {
@@ -22,7 +31,8 @@ function check_root {
 function start_logging {
         FILENAME=${LOGGING_DIRECTORY}/"atop_"$(date +%Y%m%dT%H%M%S)".log"
         log_message "starting atop collection in ${FILENAME}"
-        sudo atop -w ${FILENAME} -L 512 ${ATOP_SAMPLE_INTERVAL_SECONDS} ${ATOP_SAMPLE_COUNT}
+        atop -w ${FILENAME} -L 512 ${ATOP_SAMPLE_INTERVAL_SECONDS} ${ATOP_SAMPLE_COUNT} &
+        wait -n
         log_message "stopping atop collection in ${FILENAME}"
 }
 
@@ -48,12 +58,12 @@ function main {
                 log_message "need to be run root priviliges"
                 exit -1
         fi
+        trap handle_exit SIGINT SIGTERM SIGKILL
         [[ -d ${LOGGING_DIRECTORY} ]] || mkdir -p ${LOGGING_DIRECTORY}
-        start_logging
-        check_and_rotate_logs
+        while [ true ]; do
+                start_logging
+                check_and_rotate_logs
+        done
 }
 
-
-while [ true ]; do
-        main "$@"
-done
+main "$@"
